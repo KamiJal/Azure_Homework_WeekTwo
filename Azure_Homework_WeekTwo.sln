@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azure_Homework_WeekTwo", "Azure_Homework_WeekTwo\Azure_Homework_WeekTwo.csproj", "{D8FA82C4-3C4C-4712-80D1-0409B3C8CBC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordSynonyms", "Azure_Homework_WeekTwo\WordSynonyms.csproj", "{D8FA82C4-3C4C-4712-80D1-0409B3C8CBC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherForecast", "WF\WeatherForecast.csproj", "{DEFFBF48-D4A8-44DD-ADDF-65BB9874AED0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoupleMatch", "CoupleMatch\CoupleMatch.csproj", "{10C372C7-AAB5-4F5B-842C-1466DF5C8E15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{D8FA82C4-3C4C-4712-80D1-0409B3C8CBC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8FA82C4-3C4C-4712-80D1-0409B3C8CBC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8FA82C4-3C4C-4712-80D1-0409B3C8CBC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEFFBF48-D4A8-44DD-ADDF-65BB9874AED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEFFBF48-D4A8-44DD-ADDF-65BB9874AED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEFFBF48-D4A8-44DD-ADDF-65BB9874AED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEFFBF48-D4A8-44DD-ADDF-65BB9874AED0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10C372C7-AAB5-4F5B-842C-1466DF5C8E15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10C372C7-AAB5-4F5B-842C-1466DF5C8E15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10C372C7-AAB5-4F5B-842C-1466DF5C8E15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10C372C7-AAB5-4F5B-842C-1466DF5C8E15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
