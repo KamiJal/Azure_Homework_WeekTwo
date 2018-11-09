@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KamiJal.CoupleMatch.Models;
+﻿using KamiJal.CoupleMatch.Models;
 
 namespace KamiJal.CoupleMatch.LanguagePack
 {

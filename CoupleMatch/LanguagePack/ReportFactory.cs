@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KamiJal.CoupleMatch.LanguagePack
+﻿namespace KamiJal.CoupleMatch.LanguagePack
 {
     public static class ReportFactory
     {
@@ -12,7 +6,10 @@ namespace KamiJal.CoupleMatch.LanguagePack
         {
             switch (languageCode)
             {
-                case "ru": { return new ReportRu();}
+                case "ru":
+                {
+                    return new ReportRu();
+                }
                 default:
                 {
                     return new ReportEn();

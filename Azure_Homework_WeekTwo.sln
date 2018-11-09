@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordSynonyms", "Azure_Homework_WeekTwo\WordSynonyms.csproj", "{D8FA82C4-3C4C-4712-80D1-0409B3C8CBC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordSynonyms", ""WordSynonyms", \WordSynonyms.csproj", "{D8FA82C4-3C4C-4712-80D1-0409B3C8CBC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherForecast", "WF\WeatherForecast.csproj", "{DEFFBF48-D4A8-44DD-ADDF-65BB9874AED0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherForecast", "WeatherForecast\WeatherForecast.csproj", "{DEFFBF48-D4A8-44DD-ADDF-65BB9874AED0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoupleMatch", "CoupleMatch\CoupleMatch.csproj", "{10C372C7-AAB5-4F5B-842C-1466DF5C8E15}"
 EndProject

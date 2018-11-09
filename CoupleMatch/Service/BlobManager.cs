@@ -1,17 +1,16 @@
-﻿using Microsoft.WindowsAzure.Storage;
+﻿using System.Threading.Tasks;
+using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
-using System.Threading.Tasks;
 
 namespace KamiJal.CoupleMatch.Service
 {
     public class BlobManager
     {
-        private readonly CloudStorageAccount _storageAccount;
-        private readonly CloudBlobContainer _cloudBlobContainer;
-        private readonly CloudBlobClient _cloudBlobClient;
-
         private const string StorageConnectionString = "{YOUR_BLOB_STORAGE_CONNECTION_STRING}";
         private const string ContainerName = "{YOUR_BLOB_CONTAINER_NAME}";
+        private readonly CloudBlobClient _cloudBlobClient;
+        private readonly CloudBlobContainer _cloudBlobContainer;
+        private readonly CloudStorageAccount _storageAccount;
 
         public BlobManager()
         {
@@ -29,14 +28,19 @@ namespace KamiJal.CoupleMatch.Service
             return cloudBlockBlob.Uri.AbsoluteUri;
         }
 
-        public async Task DeleteFileAsync(string blobName) => 
+        public async Task DeleteFileAsync(string blobName)
+        {
             await _cloudBlobContainer.GetBlockBlobReference(blobName).DeleteIfExistsAsync();
+        }
 
-        public async Task<string> GetPhotoUrlByFilename(string filename) => 
-            await Task.Run(() => _cloudBlobContainer.GetBlockBlobReference(filename).Uri.AbsoluteUri);
+        public async Task<string> GetPhotoUrlByFilename(string filename)
+        {
+            return await Task.Run(() => _cloudBlobContainer.GetBlockBlobReference(filename).Uri.AbsoluteUri);
+        }
 
-        public async Task GetPhotoByteDataByFilename(string filename, byte[] target) =>
+        public async Task GetPhotoByteDataByFilename(string filename, byte[] target)
+        {
             await _cloudBlobContainer.GetBlockBlobReference(filename).DownloadToByteArrayAsync(target, 0);
-
+        }
     }
 }

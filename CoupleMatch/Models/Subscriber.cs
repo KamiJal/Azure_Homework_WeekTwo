@@ -9,6 +9,18 @@ namespace KamiJal.CoupleMatch.Models
     [Table("Subscribers")]
     public class Subscriber
     {
+        public Subscriber()
+        {
+        }
+
+        public Subscriber(Chat chat)
+        {
+            ChatId = chat.Id;
+            FirstName = chat.FirstName;
+            LastName = chat.LastName;
+            RegisteredDate = DateTime.Now;
+        }
+
         public int Id { get; set; }
 
         public long ChatId { get; set; }
@@ -29,22 +41,12 @@ namespace KamiJal.CoupleMatch.Models
 
         public DateTime RegisteredDate { get; set; }
 
-        public Subscriber() { }
-        public Subscriber(Chat chat)
-        {
-            ChatId = chat.Id;
-            FirstName = chat.FirstName;
-            LastName = chat.LastName;
-            RegisteredDate = DateTime.Now;
-        }
-
         public bool FullFill(DetectedFace face, string fileId, PhotoSize[] photoSize)
         {
-
             if (!face?.FaceAttributes?.Age.HasValue ?? true) return false;
             if (!face?.FaceAttributes?.Gender.HasValue ?? true) return false;
 
-            Age = (int)face.FaceAttributes.Age.Value;
+            Age = (int) face.FaceAttributes.Age.Value;
             Gender = face.FaceAttributes.Gender.Value.ToString();
             FileId = fileId;
             PhotoSizeJson = JsonConvert.SerializeObject(photoSize);

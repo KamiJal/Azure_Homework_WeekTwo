@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 
 namespace KamiJal.CoupleMatch.Models
 {
     public class CoupleMatchContext : DbContext
     {
-        public virtual DbSet<Subscriber> Subscribers { get; set; }
+        public CoupleMatchContext() : base("CoupleMatchContext")
+        {
+        }
 
-        public CoupleMatchContext() : base("CoupleMatchContext") {}
+        public virtual DbSet<Subscriber> Subscribers { get; set; }
     }
 }

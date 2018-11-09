@@ -1,28 +1,30 @@
-﻿using KamiJal.CoupleMatch.Api;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using KamiJal.CoupleMatch.Api;
 using KamiJal.CoupleMatch.LanguagePack;
 using KamiJal.CoupleMatch.Models;
 using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
+using File = Telegram.Bot.Types.File;
 
 namespace KamiJal.CoupleMatch.Service
 {
     public class CoupleMatchManager
     {
-        private readonly TelegramBotApiUser _telegramBot;
-        private readonly ContextManager _contextManager;
         private readonly BlobManager _blobManager;
+        private readonly ContextManager _contextManager;
         private readonly FaceApiUser _faceApi;
-
-        private Report _report;
-        private Message _message;
+        private readonly TelegramBotApiUser _telegramBot;
         private Subscriber _currentSubscriber;
         private List<Subscriber> _matchingSubscribers;
+        private Message _message;
+
+        private Report _report;
 
         public CoupleMatchManager()
         {
@@ -32,9 +34,15 @@ namespace KamiJal.CoupleMatch.Service
             _faceApi = new FaceApiUser();
         }
 
-        public void Start() => _telegramBot.StartReceiving(Bot_OnMessage);
-        public void End() => _telegramBot.StopReceiving();
+        public void Start()
+        {
+            _telegramBot.StartReceiving(Bot_OnMessage);
+        }
 
+        public void End()
+        {
+            _telegramBot.StopReceiving();
+        }
 
 
         private async void Bot_OnMessage(object sender, MessageEventArgs e)
@@ -43,8 +51,12 @@ namespace KamiJal.CoupleMatch.Service
 
             switch (e.Message.Type)
             {
-                case MessageType.PhotoMessage: await RegisterPhotoAsync(); break;
-                case MessageType.TextMessage: await TextMessageLogic(e.Message.Text); break;
+                case MessageType.PhotoMessage:
+                    await RegisterPhotoAsync();
+                    break;
+                case MessageType.TextMessage:
+                    await TextMessageLogic(e.Message.Text);
+                    break;
             }
 
             await _telegramBot.SendTextMessageAsync(e.Message.Chat, _report.Text);
@@ -76,10 +88,14 @@ namespace KamiJal.CoupleMatch.Service
 
         private async Task TextMessageLogic(string text)
         {
-            switch (text ?? String.Empty)
+            switch (text ?? string.Empty)
             {
-                case "/register": await RegisterAsync(); break;
-                case "/findCouple": await FindCouple(); break;
+                case "/register":
+                    await RegisterAsync();
+                    break;
+                case "/findCouple":
+                    await FindCouple();
+                    break;
             }
         }
 
@@ -129,10 +145,7 @@ namespace KamiJal.CoupleMatch.Service
                 var photoUrl = await _blobManager.UploadFileAsync(photoFile.FileId + ".jpg", buffer);
                 var detectedFace = await _faceApi.MakeAnalysisRequest(photoUrl);
 
-                if (subscriberInDb.PhotoProvided)
-                {
-                    await _blobManager.DeleteFileAsync(subscriberInDb.FileId + ".jpg");
-                }
+                if (subscriberInDb.PhotoProvided) await _blobManager.DeleteFileAsync(subscriberInDb.FileId + ".jpg");
 
                 subscriberInDb.FullFill(detectedFace, photoFile.FileId, _message.Photo);
 
@@ -153,7 +166,7 @@ namespace KamiJal.CoupleMatch.Service
 
         private async Task<byte[]> GetByteArrayFromFile(File file)
         {
-            using (var input = new System.IO.MemoryStream())
+            using (var input = new MemoryStream())
             {
                 await file.FileStream.CopyToAsync(input);
                 return input.ToArray();
